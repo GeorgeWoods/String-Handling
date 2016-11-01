@@ -1,0 +1,138 @@
+import java.util.Scanner;
+
+public class stringHandling
+{
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        
+        //Printing how many letters the name has
+        System.out.println("What is your name?");
+        String name = input.nextLine();
+        System.out.println("Your name has " + name.length() + " letters");
+        
+        //Putting a string into capital letters
+        System.out.println("Enter your postcode:");
+        String postcode = input.nextLine();
+        System.out.println(postcode.toUpperCase());
+        
+        //Getting the user to enter a password twice and seeing if they match
+        System.out.println("Enter your password:");
+        String password1 = input.nextLine();
+        System.out.println("Enter your password again");
+        String password2 = input.nextLine();
+        while (!password1.equals(password2))
+        {
+            System.out.println("Please make sure your passwords match!");
+            System.out.println("Enter your password:");
+            password1 = input.nextLine();
+            System.out.println("Enter your password again:");
+            password2 = input.nextLine();
+        }
+        if (password1.equals(password2))
+        {
+            System.out.println("Password Verified!");
+        }
+        
+        //Printing Hello followed by their last name only
+        System.out.println("Enter your first and last name");
+        String firstAndLastName = input.nextLine();
+        System.out.println("Hello " + firstAndLastName.split(" ")[1] + "!");
+        
+        //Printing initials of a name
+        System.out.println("Enter your first, middle and last name");
+        String fullName = input.nextLine();
+        System.out.print("Your initials are " + fullName.charAt(0));
+        for (int i = 0; i < fullName.length(); i = i + 1)
+        {
+            if (fullName.charAt(i) == ' ')
+            {
+                System.out.print(fullName.charAt (i + 1));
+            }
+        }
+        System.out.println();
+        
+        //How many words a string has
+        System.out.println("Enter a common saying:");
+        String saying = input.nextLine();
+        System.out.println("Your saying has " + saying.split(" ").length + " words");
+        
+        //String in reverse
+        System.out.println("Enter the name of any animal:");
+        String animal = input.nextLine();
+        String reverseAnimal = "";
+        for(int i = animal.length()-1; i >= 0; i--)
+        {
+            reverseAnimal = reverseAnimal + animal.charAt(i);
+        }
+        System.out.println("Your animal in reverse is: " + reverseAnimal);
+        
+        //Counting the vowels and consonants
+        System.out.println("Enter any word:");
+        String word = input.nextLine();
+        if (word.isEmpty())
+        {
+            System.out.println("Please make sure you enter a word");
+            String newWord = input.nextLine();
+        
+            int vowels = 0;
+            int consonants = 0;
+            for (int i = 0; i < newWord.length(); i++)
+            {
+                char curr = newWord.toLowerCase().charAt(i);
+                // || means OR
+                if (curr == 'a' || curr == 'e' || curr == 'i' || curr == 'o' || curr == 'u')
+                {
+                    vowels++;
+                }
+                else
+                {
+                    consonants++;
+                }
+            }
+            System.out.println("You have " + vowels + " vowels!");
+            System.out.println("You have " + consonants + " consonants!");
+        }
+        
+        else
+        {
+            int vowels = 0;
+            int consonants = 0;
+            for (int i = 0; i < word.length(); i++)
+            {
+                char curr = word.toLowerCase().charAt(i);
+                // || means OR
+                if (curr == 'a' || curr == 'e' || curr == 'i' || curr == 'o' || curr == 'u')
+                {
+                    vowels++;
+                }
+                else
+                {
+                    consonants++;
+                }
+            }
+            System.out.println("You have " + vowels + " vowels!");
+            System.out.println("You have " + consonants + " consonants!");
+        }
+        
+        //Making the user guess the word Random
+        String random = "random";
+        String guess = "??????";
+        while(!guess.equals(random))
+        {
+            System.out.println("Try to guess the word I am thinking of! It is 6 characters long!");
+            String userGuess = input.nextLine();
+            
+            for(int i = 0; i < userGuess.length(); i++)
+            {
+                char character = userGuess.toLowerCase().charAt(i);
+                if (character == random.charAt(i))
+                {
+                    guess = guess.substring(0, i) + character + guess.substring(i + 1, guess.length());
+                }   
+            }
+            System.out.println("Your guess so far: " + guess);
+        }
+        System.out.println("Well done! You guessed the word I was thinking of correctly!");
+    }
+}
